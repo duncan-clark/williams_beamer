@@ -1,0 +1,44 @@
+% !TEX root = example/example.tex
+
+\mode<presentation>
+
+% Command to print the HTML value of a color:
+\newcommand{\HTMLcolor}[1]{
+\extractcolorspec{#1}{\tempColor}
+\expandafter\convertcolorspec\tempColor{HTML}\tempColor
+\#\tempColor
+}
+
+
+% Define Colors:
+% Define the williams college pallete
+\definecolor{w_purple}{HTML}{500082}
+\definecolor{w_gold}{HTML}{FFBE0A}
+\definecolor{w_black}{HTML}{000000}
+\definecolor{w_white}{HTML}{FFFFFF}
+
+\colorlet{frameTitleColor}{w_purple}
+\colorlet{frameTitleBarColor}{w_gold}
+
+\colorlet{frameFootBarColor}{w_gold}
+\colorlet{frameFooterColor}{w_purple}
+
+\colorlet{titlePageHeaderColor}{w_purple}
+\colorlet{titlePageBarColor}{w_gold}
+\colorlet{titlePageFooterColor}{w_purple}
+
+
+
+% Assign Color Settings:
+\setbeamercolor*{title}{fg=w_purple}
+\setbeamercolor*{author}{fg=w_black}
+\setbeamercolor*{date}{fg=w_black}
+\setbeamercolor*{location}{fg=w_white}
+
+\setbeamercolor*{frametitle}{fg=w_white}
+\setbeamercolor*{slide number}{fg=w_white}
+
+\setbeamercolor*{item}{fg=w_purple}
+
+\mode
+<all>

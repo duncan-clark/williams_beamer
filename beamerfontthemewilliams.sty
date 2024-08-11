@@ -1,0 +1,57 @@
+% !TEX root = example/example.tex
+% \RequirePackage[no-math]{fontspec}
+\RequirePackage{fontspec}
+\RequirePackage{iffont}
+
+
+%---------------------------------------------------------------------------------------------------
+% Function to print current font
+%---------------------------------------------------------------------------------------------------
+\makeatletter
+\newcommand{\printcurrentfont}{%
+    \expandafter\format@externalcurrentfont\fontname\font:\@nil
+    }
+\def\format@externalcurrentfont#1:#2\@nil{%
+    {\@ifnextchar"{\@gobble}{}#1}%
+    }
+\makeatother
+
+
+
+%---------------------------------------------------------------------------------------------------
+% Check for font
+%--------------------------------------------------------------------------------------------------
+\iffontsexist{Aptos Light, 
+				  Aptos Light Italic, 
+				  Aptos, 
+				  Aptos Italic}{%
+		\setsansfont[ItalicFont={Aptos Light Italic},
+					 BoldFont={Aptos},
+					 BoldItalicFont={Aptos Italic}]
+					 {Aptos Light}
+	}{
+		\PackageWarning{beamerthememewilliams}{Aptos fonts not found.}
+		\PackageWarning{beamerthememewilliams}{Using default fonts.}
+		\renewcommand{\printcurrentfont}{default}
+		\setsansfont[ItalicFont={Open Sans Light Italic},
+					 BoldFont={Open Sans},
+					 BoldItalicFont={Open Sans Italic}]
+					 {Open Sans Light}
+	}
+
+
+
+
+%---------------------------------------------------------------------------------------------------
+% Function to print current font
+%--------------------------------------------------------------------------------------------------
+% Title page font:
+\setbeamerfont*{title}{size=\Large, series=\bfseries}
+\setbeamerfont*{location}{size=\scriptsize}
+\setbeamerfont*{author}{size=\small}
+\setbeamerfont*{date}{size=\footnotesize}
+
+% Slide font:
+\setbeamerfont*{frametitle}{size=\Large, series=\bfseries}
+\setbeamerfont*{framesubtitle}{size=\normalsize, series=\normalfont}
+\setbeamerfont*{slide number}{size=\tiny}

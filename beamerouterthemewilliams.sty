@@ -1,0 +1,106 @@
+% !TEX root = example/example.tex
+
+\mode<presentation>
+
+%-------------------------------------------------------------------------------------------------
+% Display Section numbers in contents
+%-------------------------------------------------------------------------------------------------
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+% prevent printing subsection slides
+% but print first slide
+\AtBeginSection[]{
+\begin{frame}[plain]%
+  \begin{center}%
+    \usebeamerfont{section title}\thesection.~\insertsection%
+  \end{center}%
+\end{frame}%
+}
+
+% do nothing!
+% just want the subsection in the TOC
+\AtBeginSubsection[]{
+
+}
+
+
+%-------------------------------------------------------------------------------------------------
+% Define headline and foot line widths
+%-------------------------------------------------------------------------------------------------
+\newlength{\footlineWidth}
+\setlength{\footlineWidth}{3mm}
+
+
+\newlength{\headlineWidth}
+\setlength{\headlineWidth}{13mm}
+
+
+%-------------------------------------------------------------------------------------------------
+% Frame title
+%-------------------------------------------------------------------------------------------------
+\defbeamertemplate*{frametitle}{williams}[1][]
+{
+\nointerlineskip
+\begin{beamercolorbox}[wd=\paperwidth, sep=0pt, ht=\headlineWidth]{frametitle} 
+	\begin{tikzpicture}
+	% Blue background:
+	\useasboundingbox[fill=w_purple] (0,0) rectangle (\paperwidth,\headlineWidth);
+
+	% Gold bar:
+	\fill[w_gold] (0,0) rectangle (\paperwidth,0.5\footlineWidth);
+	
+	% Title:
+	\node[align=left,
+		  text width=\textwidth] at (0.5\paperwidth, 0.5\headlineWidth+0.25\footlineWidth)
+		{\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\baselineskip=15pt\insertframetitle\\
+		 \usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par};
+		
+	\end{tikzpicture}
+\end{beamercolorbox}
+}
+
+%-------------------------------------------------------------------------------------------------
+% Footer:
+%-------------------------------------------------------------------------------------------------
+% Variables to control slide number:
+\newif\ifslidenumber
+%\slidenumberfalse
+\slidenumbertrue
+\newcommand{\showSlideNumber}{\slidenumbertrue}
+
+\newlength{\slideNumberWidth}
+\setlength{\slideNumberWidth}{4cm}
+
+\setbeamertemplate{footline}
+{
+	\begin{tikzpicture}
+	% Bars:
+	%\useasboundingbox[fill=uclaBlueDark] (0,0) rectangle (\paperwidth,\footlineWidth);
+	%\fill[uclaGoldDark] (0,0.5\footlineWidth) rectangle (\paperwidth,\footlineWidth);
+	
+	\useasboundingbox[fill=w_purple] (0,0) rectangle (\paperwidth,0.5\footlineWidth);
+	
+
+	% Slide number:
+	\ifslidenumber
+		\fill[w_purple] (\paperwidth,0.0) -- 
+							++(0.0,\footlineWidth) --
+							++(-\slideNumberWidth, 0.0)  --
+							++(225:1.4\footlineWidth) --
+							cycle;
+		\node[left, 
+			  font={\usebeamercolor[fg]{slide number}\usebeamerfont{slide number}}] 
+			at (0.99\paperwidth,0.5\footlineWidth) {\hfill \insertframenumber / \inserttotalframenumber};
+	\fi
+
+	\node[left, 
+		  font={\usebeamercolor[fg]{slide number}\usebeamerfont{slide number}}] 
+		at (0.85\paperwidth,0.5\footlineWidth) {\insertshortauthor};
+	\end{tikzpicture}
+}
+
+
+
+
+\mode<all>
