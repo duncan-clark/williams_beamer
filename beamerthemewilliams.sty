@@ -120,6 +120,14 @@
 			  below=0.0 of author,
 			  font={\usebeamercolor[fg]{date}\usebeamerfont{date}}] 
 			(date) {\insertdate};
+
+		% Subtitle
+		\node[align=left, 
+			text width=\textwidth, 
+			anchor=north, 
+			below=0.0 of date,
+			font={\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}}] 
+		  (subtitle) {\insertsubtitle};
 			
 		% Location:
 		\node[text width=\textwidth, 
