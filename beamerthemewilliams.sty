@@ -4,6 +4,10 @@
 
 % Required packages:
 \RequirePackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
 \usetikzlibrary{positioning}
 
@@ -104,12 +108,20 @@
 			  above=0.0 of titleBar, 
 			  font={\usebeamercolor[fg]{title}\usebeamerfont{title}}] 
 			(title) {\inserttitle\par};
+
+		% Subtitle
+		\node[align=left, 
+		text width=\textwidth, 
+		anchor=north, 
+		below=0.0 of titleBar,
+		font={\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}}] 
+		(subtitle) {\insertsubtitle};
 			
 		% Author:
 		\node[align=left, 
 			  text width=\textwidth, 
 			  anchor=north, 
-			  below=0.0 of titleBar,
+			  below=0.0 of subtitle,
 			  font={\usebeamercolor[fg]{author}\usebeamerfont{author}}] 
 			(author) {\insertauthor};
 			
@@ -121,13 +133,7 @@
 			  font={\usebeamercolor[fg]{date}\usebeamerfont{date}}] 
 			(date) {\insertdate};
 
-		% Subtitle
-		\node[align=left, 
-			text width=\textwidth, 
-			anchor=north, 
-			below=0.0 of date,
-			font={\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}}] 
-		  (subtitle) {\insertsubtitle};
+
 			
 		% Location:
 		\node[text width=\textwidth, 
